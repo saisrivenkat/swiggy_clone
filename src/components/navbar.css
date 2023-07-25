@@ -1,0 +1,10 @@
+.cart_icon {
+    position: relative;
+  }
+  .cart_icon span {
+    position: absolute;
+  
+    left: 6px;
+    top: -1px;
+  }
+  

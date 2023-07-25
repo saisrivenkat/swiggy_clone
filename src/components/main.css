@@ -1,0 +1,85 @@
+.selected{
+    border-bottom:1px solid black;
+    margin-bottom:-1.1rem;
+}
+.filter_items h1{
+    cursor: pointer;
+}
+
+
+
+.res_rating{
+    border:1px solid gray;
+    padding: 10px;
+    border-radius: 10px;
+}
+.hr{
+    border: 1px solid #d3d3d3;
+    width: 100%;
+    margin: 3px
+}
+.res_rating .total_rating{
+    font-size:10px;
+}
+.res_info_rating{
+    color:#60b246
+}
+
+.res_info_inner{
+    border-bottom-style: dotted;
+}
+.offer_tile{
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    width: max-content;
+}
+.offer_tile h1,p{
+    font-size: .8rem;
+}
+.offer_tile img{
+    height: 1.5rem;
+}
+.hide{
+    display: none;
+}
+.item_icon::before{
+    content:"/E998"
+}
+.item_logo{
+    max-width: 118px;
+    position: relative;
+}
+
+.item_logo img{
+    width: 118px;
+    height: 96px;;
+    border-radius: 10px;
+}
+.item_outer{
+    min-height: 150px;
+}
+.add_cart{
+    position: absolute;
+    background-color: white;
+    color: green;
+    border-radius: 10px;
+    padding: 5px;
+    width: 80%;
+    margin: auto;
+    left:-0;
+    right: -0px;
+    
+    text-align: center;
+    bottom: -15px;
+    
+    z-index: 1;
+    cursor: pointer;
+    
+}
+
+.blank_space{
+    height:20px;
+    width: 100%;
+    background-color: #f1f1f6;
+}

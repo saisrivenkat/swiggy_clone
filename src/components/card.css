@@ -1,0 +1,39 @@
+.card{
+    max-width: 290px;
+    border:1px solid #f2f2f2;
+    contain: content;
+    padding: 1rem;
+    margin-bottom: 10px;  
+    height: 376px;
+}
+.inner_card h1{
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 700;
+}
+.inner_card .items{
+    margin-top: 4px;
+    font-size: 13px;
+    color: #686b78;
+}
+.rating{
+    background-color:lightgreen;
+    padding: 3px;
+    color: white;
+    font-size: 15px;
+    height: 20px;
+    width: max-content;
+}
+.rating img{
+    color: white;
+}
+.green{
+    background-color: lightgreen;
+}
+.orange{
+    background-color: #DB7C38;
+}
+.no_rating{
+    background-color: none
+    ;
+}

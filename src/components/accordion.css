@@ -1,0 +1,9 @@
+.cart_button{
+    border: none;
+    background-color: #60b246;
+    color: white;
+    width: 100%;
+    padding: 2px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
