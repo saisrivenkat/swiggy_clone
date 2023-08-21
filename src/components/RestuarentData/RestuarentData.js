@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Menudata from './Menudata';
 import { useParams } from "react-router-dom";
-import star from "../assests/star.svg";
-
+import star from "../../assests/star.svg";
+import { useDispatch } from "react-redux";
 import TimelapseOutlinedIcon from "@mui/icons-material/TimelapseOutlined";
 import CurrencyRupeeOutlinedIcon from "@mui/icons-material/CurrencyRupeeOutlined";
+import { Skeleton } from "@mui/material";
 function RestuarentData() {
   let { resId } = useParams();
   const [res_data, setresdata] = useState([]);
   const [offers, setoffers] = useState([]);
   const [menu_data, setmenudata] = useState([]);
+  const[loading,setloading] = useState(true);
 
 //lat=15.8166616&lng=80.35869 -chirala
   useEffect(() => {
@@ -18,12 +20,15 @@ function RestuarentData() {
         `https://corsproxy.io/?https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=15.8166616&lng=80.35869&restaurantId=${resId}`
       );
       const data = await response.json();
+      console.log("res name",data);
       console.log(data.data.cards);
       setresdata(data.data.cards[0].card.card.info);
       console.log(data.data.cards[0].card.card.info);
       setoffers(data.data.cards[1].card.card.gridElements.infoWithStyle.offers);
-      setmenudata(data.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards);
-      
+      const groupedCard=data.data.cards.filter((item)=>{return item.groupedCard})
+      console.log("menudata cards",groupedCard)
+      setmenudata(groupedCard[0].groupedCard.cardGroupMap.REGULAR.cards);
+      setloading(false);
     };
     fetch_data();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -34,6 +39,7 @@ function RestuarentData() {
   return (
     <div>
       <div className="main_wrapper w-4/5  m-auto mt-5 p-2">
+        
         <div className="res_info">
           <div className="res_info_inner flex justify-between items-center ">
             <div>
@@ -67,7 +73,7 @@ function RestuarentData() {
             <div className="flex  gap-2">
               {offers.map((offer) => {
                 return (
-                  <div className="offer_tile flex flex-col">
+                  <div className="offer_tile flex flex-col" key={offer.info.header}>
                     <div className="flex gap-2">
                       <img
                         alt="logo"
@@ -81,7 +87,7 @@ function RestuarentData() {
               })}
             </div>
           </div>
-          <Menudata menu= {menu_data}/>
+          <Menudata res_data={res_data} menu= {menu_data}/>
         </div>
       </div>
     </div>

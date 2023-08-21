@@ -1,0 +1,28 @@
+
+.add_cart_button{
+    background-color: white;
+    /* background-color: white; */
+    display: flex;
+    justify-content: center;
+    color: #60b246;
+    width: 100px;
+    margin: auto 10px;
+    border-radius: 5px;
+}
+.quantity{
+    justify-content: space-between;
+}
+.modal_buttons{
+    gap:20px
+}
+.modal_buttons button{
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 20px;
+    width: 50%;
+    background-color: #77ca77;
+    color: white;
+}
+.cancel_button{
+    background-color: indianred !important;
+}

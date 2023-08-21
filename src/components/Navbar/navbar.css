@@ -1,0 +1,31 @@
+.cart_icon {
+    position: relative;
+}
+.cart_icon span {
+    position: absolute;
+    left: 6px;
+    top: -1px;
+}
+.location p{
+  width: 70%;
+  max-height: 20px;;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #686b78;
+}
+.location svg:hover{
+  color: orange;  
+}
+.others p{
+  font-size: 1rem;
+  border-bottom: 2px solid grey;
+    /* text-decoration: underline; */
+    /* padding: 2px; */
+  cursor: pointer;
+  color: #686b78;
+}
+.others p:hover{
+  color:orange;
+  border-bottom: 2px solid orange;
+}
+  

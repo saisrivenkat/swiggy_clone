@@ -4,10 +4,15 @@
 }
 .filter_items h1{
     cursor: pointer;
+    
 }
 
 
-
+.modal_open{
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-x: hidden;
+    overflow-y: hidden !important
+}
 .res_rating{
     border:1px solid gray;
     padding: 10px;

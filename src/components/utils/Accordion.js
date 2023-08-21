@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import Button from "./Button";
 import "./accordion.css";
-const Accordion = ({ heading, menus }) => {
+import { useSelector } from "react-redux";
+const Accordion = (props) => {
+  const {heading,menus,category,res_data} = props;
   const [show, setshow] = useState(false);
-  const [cart,setcart] = useState([])
-  const addToCart=(item)=>{
-    
-    console.log(item);
-    setcart([...cart,item])
-  }
+  const cartItems = useSelector((state) => state.restuarents.cart);
+  const cart_res_name = useSelector((state) => state.restuarents.cart_res_name);
   return (
     <>
       <div>
@@ -18,20 +17,27 @@ const Accordion = ({ heading, menus }) => {
           onClick={() => setshow(!show)}>
           <h1>
             {heading}
-            <span style={{ margin: "0 0 0 10px" }}>({menus.length})</span>
+            {menus&&<span style={{ margin: "0 0 0 10px" }}>({menus&& ((menus.length))})</span>}
           </h1>
           {show ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
         </div>
         {show && (
           <div className={show ? "menu" : "menu hide"}>
-            {menus.map((menu_item) => {
+            {category?.map((category_item) => {
               return (
                 <>
+                <Accordion heading={category_item.title} menus={category_item.itemCards} />
+                </>
+              )
+              })}
+            {menus?.map((menu_item) => {
+              return (
+                <React.Fragment key={menu_item.card.info.id}>
                   <div className="p-5 item_outer">
                     <div className="flex justify-between items-start">
                       <div>
                         <div className="flex gap-2">
-                          {menu_item.card.info.itemAttribute.vegClassifier ===
+                          {menu_item?.card?.info?.itemAttribute?.vegClassifier ===
                           "NONVEG" ? (
                             <img
                               src="https://img.icons8.com/?size=20&id=61082&format=png"
@@ -48,16 +54,20 @@ const Accordion = ({ heading, menus }) => {
                           </span>
                         </div>
                         <h1>{menu_item.card.info.name}</h1>
-                        <p style={{width:"70%"}}>{menu_item.card.info.description}</p>
+                        <p style={{ width: "70%" }}>
+                          {menu_item.card.info.description}
+                        </p>
                       </div>
-                      <div className="item_img_cart">
+                      <div
+                        className="item_img_cart"
+                        style={{ position: "relative" }}>
                         <div className="item_logo">
                           {menu_item.card.info.imageId ? (
                             <img
                               alt="res_item_logo"
-                              width='118'
+                              width="118"
                               height="96"
-                              src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/${menu_item.card.info.imageId}`}
+                              src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/${menu_item.card.info.imageId}`}
                             />
                           ) : (
                             <img
@@ -66,30 +76,32 @@ const Accordion = ({ heading, menus }) => {
                             />
                           )}
                         </div>
-                        <div className="cart">
-                            {cart.length === 0 && <button className="cart_button shadow-xl" onClick={()=>addToCart(menu_item.card.info)}>Add</button> }
-                            {cart.filter((menu_items)=>menu_items.id!==menu_item.card.info.id).map((item)=>{
-                                   
-                                        console.log(item.id,menu_item.id)
-                                        return(
-                                        <button className="cart_button shadow-xl" onClick={(menu_item)=>addToCart(menu_item)}>Add</button>
-                                        )
-                                    
-                                
-                            })}
-                          
+                        <div style={{ position: "absolute", bottom: "0" }}>
+                          <Button
+                          count={cartItems.find((item)=>{
+                            if(item.id === menu_item.card.info.id){
+                              return item.qty;
+                            }
+
+                          })}
+                            item={menu_item.card.info}
+                            isthere={cartItems.find(
+                              (item) => item.id === menu_item.card.info.id
+                            )}
+                            res_data ={res_data}
+                          />
                         </div>
                       </div>
                     </div>
                   </div>
                   <hr />
-                </>
+                </React.Fragment>
               );
             })}
           </div>
         )}
       </div>
-      <div className="blank_space"></div>
+     <div className="blank_space"></div>
     </>
   );
 };
