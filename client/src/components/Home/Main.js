@@ -11,13 +11,14 @@ import {
   set_location,
 } from "../../redux/restuarentslice";
 import { Link } from "react-router-dom";
-import Skeleton from '@mui/material/Skeleton';
-import Card from '../utils/card'
+import Skeleton from "@mui/material/Skeleton";
+import Card from "../utils/card";
 
 const MainWrapper = () => {
   const [filter, setfilter] = useState([]);
   const [offset, setoffset] = useState(0);
   const [loading, setloading] = useState(true);
+  const [loadingrem, setloadingrem] = useState(false);
   const dispatch = useDispatch();
 
   const allres = useSelector((state) => state.restuarents.allrestuarents);
@@ -32,10 +33,15 @@ const MainWrapper = () => {
     }
   }, []);
   const fetch_restuarents = async () => {
+    const loc = JSON.parse(window.localStorage.getItem("location"));
     //setloading();
-    const response = await fetch(
-      `https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${location.lat}&lng=${location.lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
-    );
+    let url=""
+    if(loc){
+      url =`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${loc.lat}&lng=${loc.lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
+    }else{
+      url=`https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${location.lat}&lng=${location.lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
+    }
+    const response = await fetch(url);
     const data = await response.json();
 
     const all_res = data.data.cards.filter((item) => {
@@ -68,9 +74,6 @@ const MainWrapper = () => {
 
     window.scrollTo(0, 0);
   };
-
-  //lat=17.385044&lng=78.486671 - hyd
-  //lat=15.8166616&lng=80.35869 -chirala
   const fetch_more = async () => {
     if (
       offset > 0 &&
@@ -94,6 +97,7 @@ const MainWrapper = () => {
         page_type: "DESKTOP_WEB_LISTING",
         _csrf: "nZys87ESVIiI-JEozS5ug3JxdpVLwAFZ-6NfIEz4",
       };
+      setloadingrem(true);
       console.log("widgetoffset after", obj.widgetOffset);
       console.log("coming");
       const response = await fetch(
@@ -122,6 +126,7 @@ const MainWrapper = () => {
       });
       console.log("remaining_res", res_info);
       dispatch(set_restuarent(res_info));
+      setloadingrem(false);
     }
   };
 
@@ -193,19 +198,24 @@ const MainWrapper = () => {
     <div>
       <div className="main_wrapper w-4/5  m-auto mt-5 p-2">
         {loading ? (
-          <div style={{display:"flex",justifyContent:"space-between",flexWrap:"wrap",alignItems:"center"}}>
-          {Array.from(new Array(8)).map((item)=>{
-            return(
-              <div >
-                
-                <Skeleton variant="rectangular" width={210} height={118} /><br/>
-                <Skeleton variant="rectangular" width={100} height={10} /><br/>
-                
-              </div>
-            )
-          })}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              flexWrap: "wrap",
+              alignItems: "center",
+            }}>
+            {Array.from(new Array(8)).map((item) => {
+              return (
+                <div>
+                  <Skeleton variant="rectangular" width={210} height={118} />
+                  <br />
+                  <Skeleton variant="rectangular" width={100} height={10} />
+                  <br />
+                </div>
+              );
+            })}
           </div>
-          
         ) : (
           <>
             <div
@@ -235,6 +245,35 @@ const MainWrapper = () => {
                     </Link>
                   );
                 })}
+                {loadingrem && (
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      flexWrap: "wrap",
+                      alignItems: "center",
+                      marginTop:"20px"
+                    }}>
+                    {Array.from(new Array(8)).map((item) => {
+                      return (
+                        <div>
+                          <Skeleton
+                            variant="rectangular"
+                            width={210}
+                            height={118}
+                          />
+                          <br />
+                          <Skeleton
+                            variant="rectangular"
+                            width={100}
+                            height={10}
+                          />
+                          <br />
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             </div>
           </>

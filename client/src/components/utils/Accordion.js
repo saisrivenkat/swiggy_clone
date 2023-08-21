@@ -8,7 +8,6 @@ const Accordion = (props) => {
   const {heading,menus,category,res_data} = props;
   const [show, setshow] = useState(false);
   const cartItems = useSelector((state) => state.restuarents.cart);
-  const cart_res_name = useSelector((state) => state.restuarents.cart_res_name);
   return (
     <>
       <div>
@@ -26,7 +25,7 @@ const Accordion = (props) => {
             {category?.map((category_item) => {
               return (
                 <>
-                <Accordion heading={category_item.title} menus={category_item.itemCards} />
+                <Accordion res_data ={res_data}  heading={category_item.title} menus={category_item.itemCards} />
                 </>
               )
               })}

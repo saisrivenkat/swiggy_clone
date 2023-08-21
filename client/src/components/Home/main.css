@@ -6,8 +6,6 @@
     cursor: pointer;
     
 }
-
-
 .modal_open{
     background-color: rgba(0, 0, 0, 0.5);
     overflow-x: hidden;
