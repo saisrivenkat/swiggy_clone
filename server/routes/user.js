@@ -7,7 +7,7 @@ router.get("/profile",profile);
 
 // register user
 router.post("/",register);
-
+router.get('/users',(req,res)=>res.send("Users"));
 //login user
 router.post("/login",login);
 
