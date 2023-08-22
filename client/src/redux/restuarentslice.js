@@ -11,6 +11,9 @@ const initialState = {
   isSidebar: false,
   widgetOffset: {},
   nextOffset: "",
+  isLoginSidebar: false,
+  userDetails:{},
+  current:"register"
 
 };
 
@@ -30,6 +33,9 @@ export const restuarentslice = createSlice({
     set_currentfilter: (state, action) => {
       state.currentfilter = action.payload;
     },
+    set_userDetails:(state,action)=>{
+      state.userDetails = action.payload
+    },
     set_filter_res: (state, action) => {
       state.allrestuarents = action.payload;
     },
@@ -37,9 +43,10 @@ export const restuarentslice = createSlice({
       state.res_menu = action.payload;
     },
     set_cart_res_name:(state,action)=>{
-      
       state.cart_res_name = action.payload
-      
+    },
+    set_current:(state,action)=>{
+      state.current = action.payload
     },
     set_cart: (state, action) => {
       if(action.payload.type === 'REMOVE_CART'){
@@ -50,6 +57,9 @@ export const restuarentslice = createSlice({
     },
     set_sidebar: (state, action) => {
       state.isSidebar = !state.isSidebar;
+    },
+    set_loginsidebar:(state,action)=>{
+      state.isLoginSidebar = !state.isLoginSidebar;
     },
     set_widgetoffset: (state, action) => {
       state.widgetOffset = action.payload;
@@ -108,7 +118,10 @@ export const {
   set_widgetoffset,
   set_nextoffset,
   set_sidebar,
-  set_location
+  set_loginsidebar,
+  set_location,
+  set_userDetails,
+  set_current
 } = restuarentslice.actions;
 export const get_all_res = (initialState) => initialState.allrestuarents;
 

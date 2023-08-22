@@ -1,0 +1,12 @@
+.profile{
+    margin: 50px 50px;
+}
+.sub_profile{
+    margin-top: 10px;
+    display: flex;
+    gap: 25px;
+    font-size: 14px;
+}
+.info h1{
+    font-size: 30px;
+}

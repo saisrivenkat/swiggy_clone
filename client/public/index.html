@@ -34,6 +34,14 @@
         width: 35%;
         z-index: 1000000;
       }
+      #login_modal{
+        position: fixed;
+        top: 0%;
+        right: 0;
+        width: 40%;
+        background-color: white;
+        z-index: 1000000;
+      }
       .overlay{
         z-index: 10000;
     position: fixed;
@@ -64,6 +72,11 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    
+    <!-- <script>
+      document.getElementById('outer_overlay').addEventListener('click',()=>{
+        
+        document.getElementById('outer_overlay').classList.remove('overlay');
+      })
+    </script> -->
   </body>
 </html>

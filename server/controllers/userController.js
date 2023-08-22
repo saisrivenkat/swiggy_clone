@@ -5,7 +5,7 @@ const salt = bcrypt.genSaltSync(10);
 const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await userModel.findOne({ email });
-  if (user === null) res.status(400).json({ error: "User not found" });
+  if (!user){ res.status(400).json({ error: "User not found" });}
   if (user && bcrypt.compare(password, user.password)) {
     res.status(200).json({
       user,
@@ -17,7 +17,7 @@ const register = async (req, res) => {
   const { name, email, phonenumber, password } = req.body;
   const userExists = await userModel.findOne({ email });
   console.log(userExists);
-
+  
   if (userExists) {
     res.status(400).json({ error: "Email already exists" });
   }

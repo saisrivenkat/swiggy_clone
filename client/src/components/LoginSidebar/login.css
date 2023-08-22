@@ -1,0 +1,42 @@
+.loginsidebar{
+    padding: 25px;
+    height: 100vh;
+    overflow-y: scroll;
+}
+.loginsidebar input{
+    width: 100%;
+    border: 1px solid #686b78;
+    padding: 10px;
+    outline:none;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+.heading{
+    margin: 20px 0; 
+}
+.break_line{
+    width: 10%;
+    height: auto;
+    border: 1px solid black;
+    margin-top: 10px;
+    
+}
+.heading h1{
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+.heading h2{
+    font-size: 14px;
+}
+.heading h2 span{
+    color: orange;
+    cursor: pointer;
+}
+.submit_button{
+    padding: 10px;
+    text-align: center;
+    background-color: #ff8d16;
+    color: white;
+    cursor: pointer;
+
+}

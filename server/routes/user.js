@@ -9,6 +9,6 @@ router.get("/profile",profile);
 router.post("/",register);
 
 //login user
-router.get("/",login);
+router.post("/login",login);
 
 module.exports = router;
