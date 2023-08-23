@@ -8,8 +8,15 @@ function Cart() {
   const res_cartname = useSelector((state) => state.restuarents.cart_res_name);
   const cart = useSelector((state) => state.restuarents.cart);
   const total_sum=useMemo(()=>{
+
     return cart.reduce((acc,item)=>{
-      const price = parseInt(item.price.toString().slice(0,-2));
+      console.log("price price",item.price);
+      let price;
+      if(item.price){
+         price = parseInt(item.price.toString().slice(0,-2))
+      }else {
+        price = parseInt(item.defaultPrice.toString().slice(0,-2))
+      }
       return acc+price*item.qty;
     },0)
   },[cart])
@@ -59,7 +66,7 @@ function Cart() {
                         <button onClick={()=>increase(item.id)}>+</button>
                       </div>
                     </div>
-                    <div>₹{parseInt(item.price.toString().slice(0,-2))}</div>
+                    <div>₹{item.price ? parseInt(item.price.toString().slice(0,-2)):parseInt(item.defaultPrice.toString().slice(0,-2))}</div>
                   </div>
                 );
               })}
