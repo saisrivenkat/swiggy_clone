@@ -25,30 +25,37 @@ const Button = (props) => {
   const[open,setopen] = React.useState(false);
   const dispatch = useDispatch();
   const cart_res_name = useSelector((state) => state.restuarents.cart_res_name);
-  console.log(count);
-  console.log("from add button",res_data)
+  
   const handleClose=()=>{
     setopen(!open);
   }
   const remove_cart=(item)=>{
+    const obj_data={
+      name:res_data.name,
+      img:`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_120,h_120,c_fill/${res_data.cloudinaryImageId}}`
+    }
     const obj={type:'REMOVE_CART'};
     dispatch(set_cart(obj));
     dispatch(set_cart_res_name(""));
     const obj2={...item,qty:1};
     dispatch(set_cart(obj2));
-    dispatch(set_cart_res_name(res_data.name));
+    dispatch(set_cart_res_name(obj_data));
     setopen(!open);
   }
   const add = (menu_item) => {
-    if(cart_res_name){
-      if(cart_res_name !== res_data.name){
+    if(cart_res_name && cart_res_name.name !== undefined){
+      if(cart_res_name.name !== res_data.name){
         setopen(true)
         return
       }
     }
+    const res_obj={
+      name:res_data.name,
+      img:`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_100,h_100,c_fill/${res_data.cloudinaryImageId}`
+    }
     const obj={...menu_item,qty:1};
     dispatch(set_cart(obj));
-    dispatch(set_cart_res_name(res_data.name));
+    dispatch(set_cart_res_name(res_obj));
   };
   const increase=()=>{
     dispatch(increase_qty(item.id));

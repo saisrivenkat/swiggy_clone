@@ -22,6 +22,7 @@ function RestuarentData() {
       const data = await response.json();
       console.log("res name",data);
       console.log(data.data.cards);
+      console.log("individual res Data",data.data.cards[0].card.card.info)
       setresdata(data.data.cards[0].card.card.info);
       console.log(data.data.cards[0].card.card.info);
       setoffers(data.data.cards[1].card.card.gridElements.infoWithStyle.offers);

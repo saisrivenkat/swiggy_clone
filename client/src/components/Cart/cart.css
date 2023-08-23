@@ -1,0 +1,22 @@
+.main_cartview{
+    gap:50px
+}
+.part_one{
+    width:60%;
+}
+.address_part{
+    background-color: white;
+}
+.cart_details{
+    width: 30%;
+    background-color: white;
+    padding: 20px;
+}
+.item_name{
+    width: 130px;
+    padding: 10px 0;
+}
+.cart_qty_buttons{
+    
+    padding: 5px;
+}

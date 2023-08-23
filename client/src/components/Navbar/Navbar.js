@@ -51,7 +51,7 @@ const Navbar = () => {
       }}>
       <div className="flex justify-between items-center p-4 w-4/5 m-auto">
         <div className="flex  items-center" style={{ gap: "1.5rem" }}>
-          <div>
+          <div onClick={()=>navigate('/')} style={{cursor:"pointer"}}>
             <img src={swiggy_logo} alt="swiggy_logo" />
           </div>
           <div className="address flex gap-2 items-center" onClick={setsidebar}>
@@ -66,8 +66,8 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex gap-4">
-          <div className="flex items-center gap-2">
-            <div className="cart_icon">
+          <div className="flex items-center gap-2" onClick={()=>navigate('/cart')} style={{cursor:"pointer"}}>
+            <div className="cart_icon" >
               <img src={cartsvg} alt="cart_logo" height="20" width="20" />
               <span className="text-sm">{cartItem.length}</span>
             </div>

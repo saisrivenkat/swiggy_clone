@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import Main from './components/Home/Main';
 import Profile from './components/Profile/Profile'
 import Login from './components/LoginSidebar/Index';
+import Cart from './components/Cart/Cart';
 const location_sidebar = document.getElementById('sidebar_modal');
 const login_sidebar = document.getElementById('login_modal');
 
@@ -41,6 +42,9 @@ const appRouter = createBrowserRouter([
       },{
         path: "/profile",
         element:<Profile/>
+      },{
+        path:"/cart",
+        element:<Cart/>
       }
     ],
   }

@@ -4,7 +4,7 @@ const initialState = {
   allrestuarents: [],
   currentfilter: "RELEVANCE",
   res_menu: [],
-  cart_res_name:'',
+  cart_res_name:{},
   cart: [],
   location: { lat: 17.385044, lng: 78.486671,city:'Hyderabad,Telangana' },
   isLogin: false,
@@ -74,6 +74,7 @@ export const restuarentslice = createSlice({
     },
     increase_qty: (state, action) => {
       //console.log("redux",action.payload,state.cart)
+      console.log(action.payload);
       const newCart = state.cart.map((item) => {
         if (item.id === action.payload) {
           item.qty = item.qty + 1;
@@ -87,16 +88,19 @@ export const restuarentslice = createSlice({
       let index; // store the index of an elemrnt which is less than 1 for removing from cart
       const newCart = state.cart.map((item, idx) => {
         if (item.id === action.payload) {
-          if (item.qty !== 1) {
-            item.qty = item.qty - 1;
-          }else{
+          if (item.qty === 1) {
+            console.log("from 1 qty");
             index = idx;
-            console.log("index of the item",idx)
+           
+          }else{
+            
+            item.qty = item.qty - 1;
+            console.log("from if ",item.qty)
           }
         }
         return item;
       });
-      if (index) {
+      if (index>-1) {
         console.log(index);
         newCart.splice(index, 1);
       }
