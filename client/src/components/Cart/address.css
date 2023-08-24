@@ -1,0 +1,20 @@
+.main_address{
+    
+}
+.saved_card{
+    /* padding: 23px 30px 29px 57px; */
+    border: 1px solid #e9e9eb;
+    padding: 15px;;
+    width: 45%;
+    margin-top: 20px;
+}
+.saved_card button{
+    border: 1px solid #e9e9eb;
+    color: green;
+    padding: 5px;;
+    width: 50%;
+    margin-top: 50px;
+}
+.heading_address h1{
+    font-size: 25px;;
+}

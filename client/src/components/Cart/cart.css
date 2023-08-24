@@ -6,6 +6,10 @@
 }
 .address_part{
     background-color: white;
+    padding: 20px;
+    
+    border: 1px solid #e9e9eb;
+
 }
 .cart_details{
     width: 30%;

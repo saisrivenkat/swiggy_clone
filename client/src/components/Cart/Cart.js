@@ -2,6 +2,8 @@ import React,{useMemo} from "react";
 import "./cart.css";
 import { useSelector,useDispatch } from "react-redux";
 import {increase_qty,decrease_qty} from '../../redux/restuarentslice';
+import Address from './Address'
+import Payment from "./Payment";
 
 function Cart() {
     const dispatch = useDispatch();
@@ -40,8 +42,11 @@ function Cart() {
       <div className="w-4/5  m-auto mt-5 p-2">
         <div className="main_cartview flex justify-between ">
           <div className="part_one">
-            <div className="address_part shadow-lg">
-              <h2>Address</h2>
+            <div className="address_part ">
+              <Address/>
+            </div>
+            <div className="address_part mt-5">
+              <Payment/>
             </div>
           </div>
           <div className="cart_details shadow-lg">

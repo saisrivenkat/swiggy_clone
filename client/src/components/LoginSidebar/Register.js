@@ -29,21 +29,21 @@ const Login = () => {
           password:password
         }
         console.log(user)
-        fetch('http://localhost:5000/user',{
-          method:'POST',
-          headers:{
-            'Content-Type':'application/json'
-          },
-          body:JSON.stringify(user)
-        }).then(res=>res.json()).then(data=>{
-            if(data._id){
-                dispatch(set_userDetails(data))
-                remove();
-            }
-          if(err){
-            setError(err)
-          }
-        })
+        // fetch('http://localhost:5000/user/register',{
+        //   method:'POST',
+        //   headers:{
+        //     'Content-Type':'application/json'
+        //   },
+        //   body:JSON.stringify(user)
+        // }).then(res=>res.json()).then(data=>{
+        //     if(data._id){
+        //         dispatch(set_userDetails(data))
+        //         remove();
+        //     }
+        //   if(err){
+        //     setError(err)
+        //   }
+        // })
       }
       useEffect(()=>{
         ref.current.focus();
@@ -70,7 +70,7 @@ const Login = () => {
                 <input type="text" placeholder="Enter your Password" onClick={(e)=>setpassword(e.target.value)}/>
             </div>
             <div className='submit_button'>
-                <button onClick={submit}>Submit</button>
+                <button onClick={()=>submit()}>Submit</button>
             </div>
         </div>
         </>

@@ -10,18 +10,22 @@ import Main from './components/Home/Main';
 import Profile from './components/Profile/Profile'
 import Login from './components/LoginSidebar/Index';
 import Cart from './components/Cart/Cart';
+import Address from './components/Cart/Addaddress';
 const location_sidebar = document.getElementById('sidebar_modal');
 const login_sidebar = document.getElementById('login_modal');
+const address_modal = document.getElementById('address_sidebar');
 
 const AppLayout = () => {
   
   const isSidebar = useSelector((state) => state.restuarents.isSidebar);
   const isLoginSidebar = useSelector((state) => state.restuarents.isLoginSidebar);
+  const savedaddress = useSelector((state) => state.restuarents.savedaddress);
   
   return (
     <>
      {isSidebar&&createPortal(<Locationsidebar/>,location_sidebar)}
      {isLoginSidebar&&createPortal(<Login/>,login_sidebar)}
+     {savedaddress&&createPortal(<Address/>,address_modal)}
       <Navbar />
       <Outlet />
     </>

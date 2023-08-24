@@ -49,4 +49,27 @@ const profile = async (req, res) => {
   res.status(400).json({ error: "User not found" });
 };
 
-module.exports = { login, register, profile };
+const address=async(req,res)=>{
+  const {email,address} = req.body;
+  console.log(req.body)
+  const user = await userModel.findOne({ email});
+  if(user === null) res.status(400).json({ error: "User not found" });
+  if(user){
+    user.address.push(address);
+    const update = await user.save();
+    if(update) res.status(200).json(update);
+  }
+}
+
+const orders = async(req,res)=>{
+  const {email,order_details} = req.body;
+  const user = await userModel.findOne({ email });
+  if(user === null) res.status(400).json({ error: "User not found" });
+  if(user){
+    user.orders.push(order_details);
+    const update = await user.save();
+    if(update) res.status(200).json(update.orders);
+  }
+}
+
+module.exports = { login, register, profile,address,orders };

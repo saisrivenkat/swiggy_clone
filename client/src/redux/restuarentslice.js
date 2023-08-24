@@ -1,21 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
+
+
 const initialState = {
   allrestuarents: [],
   currentfilter: "RELEVANCE",
   res_menu: [],
   cart_res_name:{},
   cart: [],
-  location: { lat: 17.385044, lng: 78.486671,city:'Hyderabad,Telangana' },
+  location: {lat:28.7041,lng:77.1025,city:"Delhi"},
   isLogin: false,
   isSidebar: false,
   widgetOffset: {},
   nextOffset: "",
   isLoginSidebar: false,
   userDetails:{},
-  current:"register"
+  current:"register",
+  address:[],
+  savedaddress:false,
+  user:{}
 
 };
+
+
 
 export const restuarentslice = createSlice({
   name: "restuarents",
@@ -39,11 +47,20 @@ export const restuarentslice = createSlice({
     set_filter_res: (state, action) => {
       state.allrestuarents = action.payload;
     },
+    set_address:(state,action)=>{
+      state.savedaddress =!state.savedaddress
+    },
+    set_addressDetails:(state,action)=>{
+      state.address = [...state.address,action.payload]
+    },
     set_res_menu: (state, action) => {
       state.res_menu = action.payload;
     },
     set_cart_res_name:(state,action)=>{
       state.cart_res_name = action.payload
+    },
+    set_user:(state,action)=>{
+      state.user = action.payload
     },
     set_current:(state,action)=>{
       state.current = action.payload
@@ -107,6 +124,7 @@ export const restuarentslice = createSlice({
       state.cart = [...newCart];
     },
   },
+  
 });
 
 // Action creators are generated for each case reducer function
@@ -125,7 +143,10 @@ export const {
   set_loginsidebar,
   set_location,
   set_userDetails,
-  set_current
+  set_current,
+  set_address,
+  set_addressDetails,
+  set_user
 } = restuarentslice.actions;
 export const get_all_res = (initialState) => initialState.allrestuarents;
 
