@@ -18,20 +18,20 @@ function Addaddress() {
             address:obj,
             email:userDetails.email
         }
-        console.log("submit")
-        fetch('http://localhost:5000/user/address',{
-          method:'POST',
-          headers:{
-            'Content-Type':'application/json'
-          },
-          body:JSON.stringify(final)
-        }).then((res)=>res.json()).then((data)=>{
-            console.log(data)
-            dispatch(set_userDetails(data))
-        })
-        .catch((err)=>console.log(err))
+        console.log(final)
+        // fetch('http://localhost:5000/user/address',{
+        //   method:'POST',
+        //   headers:{
+        //     'Content-Type':'application/json'
+        //   },
+        //   body:JSON.stringify(final)
+        // }).then((res)=>res.json()).then((data)=>{
+        //     console.log(data)
+        //     dispatch(set_userDetails(data))
+        // })
+        // .catch((err)=>console.log(err))
         
-        dispatch(set_addressDetails(obj))
+        // dispatch(set_addressDetails(obj))
         remove();
     }
   return (

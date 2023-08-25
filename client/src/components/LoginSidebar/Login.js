@@ -3,6 +3,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import {useDispatch,useSelector} from 'react-redux'
 import {set_loginsidebar} from '../../redux/restuarentslice'
 import {set_userDetails,set_current} from '../../redux/restuarentslice';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import './login.css'
 const Login = () => {
@@ -13,6 +14,7 @@ const Login = () => {
     
     const[password,setpassword]=useState()
     const[err,setError]=useState('')
+    const[loading,seloading]=useState(false);
 
     
 
@@ -23,14 +25,15 @@ const Login = () => {
       };
 
       const submit=()=>{
+
+        seloading(true)
         const user={
-          
-          email:email,
-          
-          password:password
+          email,
+          password
         }
+        
         console.log(user)
-        fetch('http://localhost:5000/user/login',{
+        fetch('https://corsproxy.io/?https://swiggybackedn.onrender.com/user/login',{
           method:'POST',
           headers:{
             'Content-Type':'application/json'
@@ -45,6 +48,9 @@ const Login = () => {
             setError(err)
           }
         })
+        seloading(false);
+
+        
       }
       useEffect(()=>{
         ref.current.focus();
@@ -60,14 +66,15 @@ const Login = () => {
             </div>
             
             <div>
-                <input type="text" placeholder="Enter your Email" ref={ref} onClick={(e)=>setemail(e.target.value)}/>
+                <input type="text" placeholder="Enter your Email" ref={ref} onChange={(e)=>setemail(e.target.value)}/>
             </div>
             
             <div>
-                <input type="text" placeholder="Enter your Password" onClick={(e)=>setpassword(e.target.value)}/>
+                <input type="text" placeholder="Enter your Password" onChange={(e)=>setpassword(e.target.value)}/>
             </div>
             <div className='submit_button'>
-                <button onClick={submit}>Login</button>
+              {loading?<CircularProgress style={{width:"30px",height:"30px"}}/>:
+                <button onClick={submit}>Login</button>}
             </div>
         </div>
         </>

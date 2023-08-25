@@ -8,10 +8,10 @@ import './login.css'
 const Login = () => {
     const dispatch = useDispatch();
     const ref= useRef();
-    const[name,setname]=useState()
-    const[email,setemail]=useState()
-    const[phonenumber,setphonenumber]=useState()
-    const[password,setpassword]=useState()
+    const[name,setname]=useState('')
+    const[email,setemail]=useState('')
+    const[phonenumber,setphonenumber]=useState('')
+    const[password,setpassword]=useState('')
     const[err,setError]=useState('')
     const userDetails = useSelector((state)=>state.restuarents.userDetails);
 
@@ -29,21 +29,21 @@ const Login = () => {
           password:password
         }
         console.log(user)
-        // fetch('http://localhost:5000/user/register',{
-        //   method:'POST',
-        //   headers:{
-        //     'Content-Type':'application/json'
-        //   },
-        //   body:JSON.stringify(user)
-        // }).then(res=>res.json()).then(data=>{
-        //     if(data._id){
-        //         dispatch(set_userDetails(data))
-        //         remove();
-        //     }
-        //   if(err){
-        //     setError(err)
-        //   }
-        // })
+        fetch('https://corsproxy.io/?https://swiggybackedn.onrender.com/user/register',{
+          method:'POST',
+          headers:{
+            'Content-Type':'application/json'
+          },
+          body:JSON.stringify(user)
+        }).then(res=>res.json()).then(data=>{
+            if(data._id){
+                dispatch(set_userDetails(data))
+                remove();
+            }
+          if(err){
+            setError(err)
+          }
+        })
       }
       useEffect(()=>{
         ref.current.focus();
@@ -58,16 +58,16 @@ const Login = () => {
                 <div className="break_line"></div>
             </div>
             <div>
-                <input type="text" placeholder="Enter your Name" ref={ref} onClick={(e)=>setname(e.target.value)}/>
+                <input type="text" value={name} ref={ref} placeholder="Enter your Name" onChange={(e)=>setname(e.target.value)}/>
             </div>
             <div>
-                <input type="text" placeholder="Enter your Email" onClick={(e)=>setemail(e.target.value)}/>
+                <input type="text"  placeholder="Enter your Email" onChange={(e)=>setemail(e.target.value)}/>
             </div>
             <div>
-                <input type="text" placeholder="Enter your Phone Number" onClick={(e)=>setphonenumber(e.target.value)}/>
+                <input type="text" placeholder="Enter your Phone Number" onChange={(e)=>setphonenumber(e.target.value)}/>
             </div>
             <div>
-                <input type="text" placeholder="Enter your Password" onClick={(e)=>setpassword(e.target.value)}/>
+                <input type="text" placeholder="Enter your Password" onChange={(e)=>setpassword(e.target.value)}/>
             </div>
             <div className='submit_button'>
                 <button onClick={()=>submit()}>Submit</button>
