@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import TimelapseOutlinedIcon from "@mui/icons-material/TimelapseOutlined";
 import CurrencyRupeeOutlinedIcon from "@mui/icons-material/CurrencyRupeeOutlined";
 import { Skeleton } from "@mui/material";
+import './restuarentdata.css'
 function RestuarentData() {
   let { resId } = useParams();
   const [res_data, setresdata] = useState([]);
@@ -61,7 +62,7 @@ function RestuarentData() {
             </div>
           </div>
           <hr />
-          <div className="res_deleivery_info">
+          {/* <div className="res_deleivery_info">
             <div className="res_delivery_inner flex">
               <div>
                 <TimelapseOutlinedIcon />
@@ -69,9 +70,9 @@ function RestuarentData() {
                 <span>{res_data.costForTwoMessage}</span>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="offers">
-            <div className="flex  gap-2">
+            <div className="flex flex-nowrap  gap-2">
               {offers.map((offer) => {
                 return (
                   <div className="offer_tile flex flex-col" key={offer.info.header}>

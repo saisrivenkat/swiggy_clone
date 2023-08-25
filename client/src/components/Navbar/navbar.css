@@ -28,4 +28,34 @@
   color:orange;
   border-bottom: 2px solid orange;
 }
+.nav_logo{
+  gap:1.5rem;
+}
   
+@media (max-width: 480px) {
+    .swiggy_logo{
+      display: none;
+    }
+    .nav_logo{
+      gap: 0;
+    width: 40%;
+    padding: 10px
+    }
+    .nav_bar{
+      width: 100%;
+      padding: 10px;
+    }
+    .location p{
+      width: 40%;
+    }
+
+}
+@media (max-width: 768px) {
+    
+    .nav_logo{
+      width: 40%;
+      
+    }
+    
+
+}

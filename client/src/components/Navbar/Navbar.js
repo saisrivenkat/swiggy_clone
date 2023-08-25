@@ -43,16 +43,17 @@ const Navbar = () => {
       document.body.style.overflow = "hidden";
     }
   }
+
   return (
     <div
       className=""
       style={{
         boxShadow: "0 2px 10px #171a2927",
       }}>
-      <div className="flex justify-between items-center p-4 w-4/5 m-auto">
-        <div className="flex  items-center" style={{ gap: "1.5rem" }}>
+      <div className="flex justify-between items-center p-4 w-4/5 m-auto nav_bar">
+        <div className="flex  items-center nav_logo">
           <div onClick={()=>navigate('/')} style={{cursor:"pointer"}}>
-            <img src={swiggy_logo} alt="swiggy_logo" />
+            <img src={swiggy_logo} alt="swiggy_logo" className="swiggy_logo" />
           </div>
           <div className="address flex gap-2 items-center" onClick={setsidebar}>
             <div className="others">
