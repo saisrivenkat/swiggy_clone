@@ -1,4 +1,5 @@
 .main_address{
+    flex-wrap: wrap;
     
 }
 .saved_card{
@@ -17,4 +18,11 @@
 }
 .heading_address h1{
     font-size: 25px;;
+}
+
+@media(max-width:480px){
+    .saved_card{
+        width: 100%;
+    }
+
 }

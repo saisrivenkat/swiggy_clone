@@ -6,4 +6,10 @@
 }
 .offers{
     margin: 10px;
+    overflow-x: auto;
+}
+@media (max-width:480px){
+    .offers{
+        display: none;
+    }
 }

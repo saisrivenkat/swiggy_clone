@@ -7,3 +7,14 @@
     border-radius: 10px;
     margin-top: 15px;
 }
+.item_content{
+    width: 80%;
+}
+@media(max-width:480px){
+    .item_desc{
+        display: none;
+    }
+    .item_content{
+        width: 50%;
+    }
+}

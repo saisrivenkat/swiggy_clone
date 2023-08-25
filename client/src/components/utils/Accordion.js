@@ -34,7 +34,7 @@ const Accordion = (props) => {
                 <React.Fragment key={menu_item.card.info.id}>
                   <div className="p-5 item_outer">
                     <div className="flex justify-between items-start">
-                      <div>
+                      <div className="item_content">
                         <div className="flex gap-2">
                           {menu_item?.card?.info?.itemAttribute?.vegClassifier ===
                           "NONVEG" ? (
@@ -53,7 +53,7 @@ const Accordion = (props) => {
                           </span>
                         </div>
                         <h1>{menu_item.card.info.name}</h1>
-                        <p style={{ width: "70%" }}>
+                        <p className="item_desc" style={{ width: "70%" }}>
                           {menu_item.card.info.description}
                         </p>
                       </div>

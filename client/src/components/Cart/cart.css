@@ -24,3 +24,15 @@
     
     padding: 5px;
 }
+@media(max-width:768px){
+
+.main_cart{
+    flex-flow: wrap-reverse;
+}
+.cart_details{
+    width: 100%;
+}
+.part_one{
+    width: 100%;
+}
+}

@@ -40,7 +40,7 @@ function Cart() {
   return (
     <div>
       <div className="w-4/5  m-auto mt-5 p-2">
-        <div className="main_cartview flex justify-between ">
+        <div className="main_cartview flex justify-between  main_cart ">
           <div className="part_one">
             <div className="address_part ">
               <Address/>
