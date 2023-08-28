@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import "./main.css";
-
 import { useSelector, useDispatch } from "react-redux";
 import {
   set_restuarent,
@@ -9,10 +8,11 @@ import {
   set_widgetoffset,
   set_nextoffset,
   set_location,
+  set_userDetails,
 } from "../../redux/restuarentslice";
 import { Link } from "react-router-dom";
-import Skeleton from '@mui/material/Skeleton';
-import Card from '../utils/card'
+import Skeleton from "@mui/material/Skeleton";
+import Card from "../utils/card";
 
 const MainWrapper = () => {
   const [filter, setfilter] = useState([]);
@@ -26,11 +26,12 @@ const MainWrapper = () => {
   const nextOffset = useSelector((state) => state.restuarents.nextOffset);
   const location = useSelector((state) => state.restuarents.location);
   useEffect(() => {
-    const saved_location = window.localStorage.getItem("location");
-    if (saved_location) {
-      dispatch(set_location(JSON.parse(saved_location)));
+    const user = window.localStorage.getItem("user");
+    if (user) {
+      dispatch(set_userDetails(JSON.parse(user)));
     }
   }, []);
+
   const fetch_restuarents = async () => {
     //setloading();
     const response = await fetch(
@@ -69,8 +70,6 @@ const MainWrapper = () => {
     window.scrollTo(0, 0);
   };
 
-  //lat=17.385044&lng=78.486671 - hyd
-  //lat=15.8166616&lng=80.35869 -chirala
   const fetch_more = async () => {
     if (
       offset > 0 &&
@@ -131,7 +130,6 @@ const MainWrapper = () => {
       document.documentElement.scrollHeight
     ) {
       setoffset((prev) => prev + 16);
-
       console.log(offset + 16);
       console.log("scrolling");
       console.log(
@@ -140,24 +138,22 @@ const MainWrapper = () => {
       );
     }
   };
-  // const fetch_more_res = useCallback(()=>{
-  //   offset>0 && fetch_more()
-  //   console.log("fetching more")
-  // },[])
-  //we can try with useCallback next time
+
   useEffect(() => {
+    
     fetch_more();
-    //fetch_more_res()
+    
   }, [offset]);
-  // const fetch_more_res=useMemo(()=>fetch_more,[offset])
-  // fetch_more_res;
+
   useEffect(() => {
     window.addEventListener("scroll", scroll);
     return window.addEventListener("scroll", scroll);
   }, []);
 
   useEffect(() => {
+    setloading(!loading);
     fetch_restuarents();
+    setloading(!loading);
     localStorage.setItem("location", JSON.stringify(location));
   }, [location]);
 
@@ -193,27 +189,32 @@ const MainWrapper = () => {
     <div>
       <div className="main_wrapper w-4/5  m-auto mt-5 p-2">
         {loading ? (
-          <div style={{display:"flex",justifyContent:"space-between",flexWrap:"wrap",alignItems:"center"}}>
-          {Array.from(new Array(8)).map((item)=>{
-            return(
-              <div >
-                
-                <Skeleton variant="rectangular" width={210} height={118} /><br/>
-                <Skeleton variant="rectangular" width={100} height={10} /><br/>
-                
-              </div>
-            )
-          })}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              flexWrap: "wrap",
+              alignItems: "center",
+            }}>
+            {Array.from(new Array(8)).map((item) => {
+              return (
+                <div>
+                  <Skeleton variant="rectangular" width={210} height={118} />
+                  <br />
+                  <Skeleton variant="rectangular" width={100} height={10} />
+                  <br />
+                </div>
+              );
+            })}
           </div>
-          
         ) : (
           <>
             <div
               className="flex justify-between items-center p-2"
               style={{ borderBottom: "1px solid #d3d3d3" }}>
-              <h1 style={{ fontWeight: "600", fontSize: "28px" }}>
+              {/* <h1 style={{ fontWeight: "600", fontSize: "28px" }}>
                 {allres.length} Restuarents
-              </h1>
+              </h1> */}
               <div className=" filter_items flex gap-6">
                 {filter.map((filter) => {
                   return (

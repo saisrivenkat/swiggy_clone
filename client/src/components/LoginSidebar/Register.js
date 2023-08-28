@@ -3,7 +3,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import {useDispatch,useSelector} from 'react-redux'
 import {set_loginsidebar} from '../../redux/restuarentslice'
 import {set_userDetails,set_current} from '../../redux/restuarentslice';
-
+import CircularProgress from '@mui/material/CircularProgress';
 import './login.css'
 const Login = () => {
     const dispatch = useDispatch();
@@ -13,6 +13,7 @@ const Login = () => {
     const[phonenumber,setphonenumber]=useState('')
     const[password,setpassword]=useState('')
     const[err,setError]=useState('')
+    const[loading,setloading] = useState(false)
     const userDetails = useSelector((state)=>state.restuarents.userDetails);
 
     const remove = () => {
@@ -22,12 +23,14 @@ const Login = () => {
       };
 
       const submit=()=>{
+
         const user={
           name:name,
           email:email,
           phonenumber:phonenumber,
           password:password
         }
+        setloading(!loading)
         console.log(user)
         fetch('https://corsproxy.io/?https://swiggybackedn.onrender.com/user/register',{
           method:'POST',
@@ -44,6 +47,7 @@ const Login = () => {
             setError(err)
           }
         })
+        setloading(!loading)
       }
       useEffect(()=>{
         ref.current.focus();
@@ -70,7 +74,9 @@ const Login = () => {
                 <input type="text" placeholder="Enter your Password" onChange={(e)=>setpassword(e.target.value)}/>
             </div>
             <div className='submit_button'>
-                <button onClick={()=>submit()}>Submit</button>
+            {loading?<CircularProgress style={{width:"30px",height:"30px"}}/>:
+                <button onClick={submit}>Register</button>}
+                
             </div>
         </div>
         </>

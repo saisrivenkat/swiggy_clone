@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
+const loc = window.localStorage.getItem("location");
+const location = loc ? JSON.parse(loc) : {lat:28.7041,lng:77.1025,city:"Delhi"};
 
 
 const initialState = {
@@ -9,7 +11,7 @@ const initialState = {
   res_menu: [],
   cart_res_name:{},
   cart: [],
-  location: {lat:28.7041,lng:77.1025,city:"Delhi"},
+  location: location,
   isLogin: false,
   isSidebar: false,
   widgetOffset: {},
@@ -20,7 +22,6 @@ const initialState = {
   address:[],
   savedaddress:false,
   user:{}
-
 };
 
 

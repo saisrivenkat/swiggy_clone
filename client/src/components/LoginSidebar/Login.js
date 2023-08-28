@@ -6,6 +6,7 @@ import {set_userDetails,set_current} from '../../redux/restuarentslice';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import './login.css'
+
 const Login = () => {
     const dispatch = useDispatch();
     const ref= useRef();
@@ -14,7 +15,8 @@ const Login = () => {
     
     const[password,setpassword]=useState()
     const[err,setError]=useState('')
-    const[loading,seloading]=useState(false);
+    const[loading,setloading]=useState(false);
+   
 
     
 
@@ -26,7 +28,7 @@ const Login = () => {
 
       const submit=()=>{
 
-        seloading(true)
+        setloading(!loading)
         const user={
           email,
           password
@@ -42,14 +44,14 @@ const Login = () => {
         }).then(res=>res.json()).then(data=>{
             if(data.user){
                 dispatch(set_userDetails(data.user))
+                window.localStorage.setItem('user',JSON.stringify(data.user))
                 remove();
             }
           if(err){
             setError(err)
           }
         })
-        seloading(false);
-
+        setloading(!loading);
         
       }
       useEffect(()=>{
@@ -72,6 +74,7 @@ const Login = () => {
             <div>
                 <input type="text" placeholder="Enter your Password" onChange={(e)=>setpassword(e.target.value)}/>
             </div>
+           
             <div className='submit_button'>
               {loading?<CircularProgress style={{width:"30px",height:"30px"}}/>:
                 <button onClick={submit}>Login</button>}

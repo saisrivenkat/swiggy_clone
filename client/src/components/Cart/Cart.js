@@ -4,11 +4,13 @@ import { useSelector,useDispatch } from "react-redux";
 import {increase_qty,decrease_qty} from '../../redux/restuarentslice';
 import Address from './Address'
 import Payment from "./Payment";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
     const dispatch = useDispatch();
   const res_cartname = useSelector((state) => state.restuarents.cart_res_name);
   const cart = useSelector((state) => state.restuarents.cart);
+  const usenavigate = useNavigate();
   const total_sum=useMemo(()=>{
 
     return cart.reduce((acc,item)=>{
@@ -33,9 +35,20 @@ function Cart() {
     dispatch(decrease_qty(item));
   }
   if (cart.length === 0) {
-    return <h1>no data</h1>;
+   
+    return(
+      <div className="flex justify-center items-center flex-col">
+      <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0" alt='no_cart' style={{width: "360px",
+    marginTop: "40px"}}  />
+      <div className="mt-3">
+        <h1 className="mt-4" style={{textAlign:"center"}}>Your cart is empty</h1>
+        <button className="mt-3" style={{padding: "15px",
+    backgroundColor: "orange",
+    color: "white"}} onClick={()=>usenavigate("/")}>SEE RESTUARANTS NEAR YOU</button>
+      </div>
+      </div>
+    )
   }
- 
   
   return (
     <div>
@@ -65,7 +78,7 @@ function Cart() {
                       <h1>{item.name}</h1>
                     </div>
                     <div>
-                      <div className="flex justify-between items-center gap-5 shadow-lg cart_qty_buttons">
+                      <div className="flex justify-between items-center gap-5  cart_qty_buttons">
                         <button className="btn" onClick={()=>decrease(item.id)}>-</button>
                         <button>{item.qty}</button>
                         <button onClick={()=>increase(item.id)}>+</button>

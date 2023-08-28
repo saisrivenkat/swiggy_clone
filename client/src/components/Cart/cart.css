@@ -1,5 +1,5 @@
 .main_cartview{
-    gap:50px
+    gap:30px
 }
 .part_one{
     width:60%;
@@ -12,7 +12,7 @@
 
 }
 .cart_details{
-    width: 30%;
+    width: 40%;
     background-color: white;
     padding: 20px;
 }
@@ -21,8 +21,8 @@
     padding: 10px 0;
 }
 .cart_qty_buttons{
-    
-    padding: 5px;
+    border:  1px solid #e9e9eb;
+    padding: 10px;
 }
 @media(max-width:768px){
 
