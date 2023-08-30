@@ -35,7 +35,6 @@ function Cart() {
     dispatch(decrease_qty(item));
   }
   if (cart.length === 0) {
-   
     return(
       <div className="flex justify-center items-center flex-col">
       <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0" alt='no_cart' style={{width: "360px",
@@ -70,7 +69,7 @@ function Cart() {
                 <p>Place</p>
               </div>
             </div>
-            <div className="items-details mt-10">
+            <div className="items-details mt-5">
               {cart.map((item) => {
                 return (
                   <div className=" flex justify-between items-center">
@@ -91,17 +90,17 @@ function Cart() {
             </div>
             <div>
                 <div>
-                    <h1>Bill Details</h1>
-                    <div className="bill_breakdown">
-                        <div className="flex justify-between items-center">
+                    <h1 style={{fontSize:"17px",marginTop:"31px"}}>Bill Details</h1>
+                    <div className="bill_breakdown" style={{marginTop:"10px",fontSize:"14px"}}>
+                        <div className="flex justify-between items-center pb-[6px]">
                             <h1>Item total</h1>
                             <h1>{total_sum}</h1>
                         </div>
-                        <div className="flex justify-between items-center">
+                        <div className="flex justify-between items-center pb-[6px]">
                             <h1>Delievry Fee</h1>
                             <h1>{Delivery_fee}</h1>
                         </div>
-                        <hr className="divider"/>
+                        <hr className="divider pb-[6px]" />
                         <div className="flex justify-between items-center">
                             <h1>Total</h1>
                             <h1>{total_sum+Delivery_fee}</h1>

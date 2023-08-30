@@ -71,7 +71,7 @@ const Login = () => {
                 <input type="text" placeholder="Enter your Phone Number" onChange={(e)=>setphonenumber(e.target.value)}/>
             </div>
             <div>
-                <input type="text" placeholder="Enter your Password" onChange={(e)=>setpassword(e.target.value)}/>
+                <input type="password" placeholder="Enter your Password" onChange={(e)=>setpassword(e.target.value)}/>
             </div>
             <div className='submit_button'>
             {loading?<CircularProgress style={{width:"30px",height:"30px"}}/>:

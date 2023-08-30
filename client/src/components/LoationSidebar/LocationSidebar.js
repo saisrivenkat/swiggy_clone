@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { set_sidebar, set_location } from "../../redux/restuarentslice";
 import useDebounce from "../../hooks/useDebounce";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+
 const Sidebar = () => {
   const dispatch = useDispatch();
   const [search, setsearch] = useState();
@@ -71,6 +72,7 @@ const Sidebar = () => {
             return (
               <div
                 className="location_box"
+                style={{cursor:"pointer"}}
                 onClick={() => setplaceId(location.place_id)}>
                 <div>
                   <LocationOnIcon />

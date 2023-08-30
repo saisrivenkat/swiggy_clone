@@ -72,7 +72,7 @@ const Login = () => {
             </div>
             
             <div>
-                <input type="text" placeholder="Enter your Password" onChange={(e)=>setpassword(e.target.value)}/>
+                <input type="password" placeholder="Enter your Password" onChange={(e)=>setpassword(e.target.value)}/>
             </div>
            
             <div className='submit_button'>

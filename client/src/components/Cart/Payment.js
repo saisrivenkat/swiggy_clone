@@ -19,7 +19,7 @@ function Payment() {
     <div className='payment_main'>
         <div>
             <h1>Payment Method</h1>
-            <h2>{process.env.NODE_ENV}</h2>
+            
         </div>
         <button onClick={pay}>Proceed to pay</button>
     </div>
